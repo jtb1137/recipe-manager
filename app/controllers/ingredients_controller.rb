@@ -17,7 +17,7 @@ class IngredientsController < ApplicationController
             redirect_to ingredient_path(@ingredient)
         else
             flash[:alert] = "Failure"
-            render 'edit'
+            render 'new'
         end
     end
 
@@ -28,9 +28,18 @@ class IngredientsController < ApplicationController
     end
 
     def update
+        if @ingredient.save
+            flash[:alert] = "Success"
+            redirect_to ingredient_path(@ingredient)
+        else
+            flash[:alert] = "Failure"
+            render 'edit'
+        end
     end
 
     def delete
+        @ingredient.destroy
+        redirect_to ingredients_path
     end
     
     private
