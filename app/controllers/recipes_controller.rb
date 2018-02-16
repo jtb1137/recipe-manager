@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
     end
 
     def update
-        if @recipe.update
+        if @recipe.save
             flash[:alert] = "Success"
             redirect_to recipe_path(@recipe)
         else
@@ -39,6 +39,7 @@ class RecipesController < ApplicationController
 
     def destroy
         @recipe.destroy
+        redirect_to root_path
     end
 
     private
