@@ -1,5 +1,7 @@
-<%= form_for @recipe do |f| %>
-    Name: <%= f.text_field :name %>
-    Description: <%= f.text_area :description %>
-    <%= f.submit "Submit" %>
-<% end %>
+<div class="container">
+    <%= bootstrap_form_for @recipe do |f| %>
+        <%= f.text_field :name %><br>
+        <%= f.text_area :description %><br>
+        <%= f.submit "Submit" %>
+    <% end %>
+</div>
