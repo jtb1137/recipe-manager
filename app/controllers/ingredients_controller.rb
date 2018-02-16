@@ -10,7 +10,7 @@ class IngredientsController < ApplicationController
     end
 
     def create
-        @ingredient = Ingredient.new(ingredient_params)
+        @ingredient = Ingredient.create(ingredient_params)
 
         if @ingredient.save
             flash[:alert] = "Success"
