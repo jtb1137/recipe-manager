@@ -5,6 +5,6 @@ class Recipe < ApplicationRecord
     accepts_nested_attributes_for :recipe_ingredients
     accepts_nested_attributes_for :ingredients
 
-    # Add ingredients to recipe & find or create new ingredient
+    validates :name, presence: true
 
 end
