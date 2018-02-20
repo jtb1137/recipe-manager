@@ -7,10 +7,12 @@ class RecipesController < ApplicationController
 
     def new
         @recipe = Recipe.new
+        @recipe_ingredients = @recipe.recipe_ingredients.build
+        @ingredient = @recipe.ingredients.build
     end
 
     def create
-        @recipe = Recipe.create(recipe_params)
+        @recipe = Recipe.new(recipe_params)
 
         if @recipe.save
             # Add ingredients to recipe & find or create new ingredient
@@ -45,7 +47,7 @@ class RecipesController < ApplicationController
 
     private
     def recipe_params
-        params.require(:recipe).permit(:name, :description)
+        params.require(:recipe).permit(:id, :name, :description, recipe_ingredients_attributes: [ :quantity, :unit_type, ingredient_attributes: [:id, :name]])
     end
 
     def set_recipe
