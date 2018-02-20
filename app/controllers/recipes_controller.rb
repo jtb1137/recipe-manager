@@ -13,6 +13,7 @@ class RecipesController < ApplicationController
         @recipe = Recipe.create(recipe_params)
 
         if @recipe.save
+            # Add ingredients to recipe & find or create new ingredient
             flash[:alert] = "Success"
             redirect_to recipe_path(@recipe)
         else

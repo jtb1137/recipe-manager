@@ -2,6 +2,20 @@
     <%= bootstrap_form_for @recipe do |f| %>
         <%= f.text_field :name %><br>
         <%= f.text_area :description %><br>
+        
+        <%= f.fields_for :recipe_ingredients, @ingredients do |recipe_ingredient| %>
+            <%= recipe_ingredient.text_field :quantity %>
+
+            <%= f.label :unit_type %>
+            <%= select(recipe_ingredient, :unit_type, options_for_select([ '' ,'tsp', 'tbsp', 'fl oz', 'cup', 'pint', 'qt', 'gal', 'ml', 'liter', 'lbs', 'oz', 'mg', 'g',  ])) %>
+
+            <%= recipe_ingredient.collection_select( :ingredient_id, Ingredient.all, :id, :name, {prompt: "Select Ingredient"} ) %>
+            
+            <%= "...Or Create a New Ingredient" %>
+            <%= recipe_ingredient.fields_for :ingredient, @recipe.ingredients.build do |ingredient| %>
+                <%= ingredient.text_field :name %>
+            <% end %>
+        <% end %>
         <%= f.submit "Submit" %>
     <% end %>
 </div>
