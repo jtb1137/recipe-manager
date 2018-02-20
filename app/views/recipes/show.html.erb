@@ -1,3 +1,9 @@
 <p><%= @recipe.name %> - <%= @recipe.description %></p>
+<p>Ingredients: </p>
+<ol>
+    <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+        <li><%= recipe_ingredient.ingredient.name %></li>
+    <% end %>
+</ol>
 <%= link_to "Edit", edit_recipe_path(@recipe) %>
 <%= link_to "Delete", recipe_path(@recipe), method: :delete %>
